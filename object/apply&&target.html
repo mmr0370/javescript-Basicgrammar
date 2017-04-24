@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的应用和属性</title>
+</head>
+<body>
+<script>
+    //JavaScript 中所有变量都可以当作对象使用，除了两个例外 null 和 undefined。
+    //console.log(Number(undefined));
+    //console.log(Number(null));
+    console.log(false.toString()); //'false'
+    console.log([1,2,3].toString());//'1,2,3'
+    function foo(){}
+    foo.bar=1;
+    console.log(foo.bar);//1
+    //一个常见的误解是数字的字面值（literal）不能当作对象使用。
+    // 这是因为 JavaScript 解析器的一个错误， 它试图将点操作符解析为浮点数字面值的一部分。
+   // 2.toString();//SyntaxError: Invalid or unexpected token
+
+    //有很多变通方法可以让数字的字面值看起来像对象。
+    console.log(2..toString()); //'2'
+    console.log(2 .toString()); //'2'
+    console.log((2).toString()); //'2'
+
+</script>
+</body>
+</html>

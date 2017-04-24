@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this 的工作原理</title>
+</head>
+<body>
+<script>
+
+    //JavaScript 有一套完全不同于其它语言的对 this 的处理机制。 在五种不同的情况下 ，this 指向的各不相同。
+    //一、全局范围内
+    this;
+    console.log("this:"+this)
+    //当在全部范围内使用 this，它将会指向全局对象。
+
+    //二、函数调用
+    function foo(){
+        console.log("函数全局调用时，this指向全局对象: "+this);
+        // "use strict" 模式下  this为undefined
+    }
+    foo();
+
+    //三、方法调用
+    var test={
+        name:"二傻",
+        foo2:function(){
+            console.log("对象的方法调用： "+this.name);
+        }
+    };
+    test.foo2(); // '二傻' 这个例子中，this 指向 test 对象。
+    //ES5 注意: 在严格模式下（strict mode），不存在全局变量。 这种情况下 this 将会是 undefined。
+
+
+    //四、调用构造函数
+    function Person(name,age,sex){
+        this.name=name;
+        this.age=age;
+        this.sex=sex;
+        this.introduce=function(){
+            console.log("My name is "+this.name+";I'm "+this.age+"years old; I,m "+this.sex+"生。");
+        }
+    }
+    var person=new Person('张三','18','男');
+    console.log(person.name);
+    person.introduce();
+    var newPerson={};
+    Person.call(newPerson,'李四','22','男');
+    Person.apply(newPerson,['李四','22','男']);
+
+    //如果函数倾向于和 new 关键词一块使用，则我们称这个函数是构造函数。 在函数内部，this 指向新创建的对象。
+</script>
+
+</body>
+</html>
